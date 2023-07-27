@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://4n2agb5wxpi5"]
+
+[ext_resource type="Texture2D" uid="uid://dw0pubbem20wd" path="res://panda_text.png" id="1_ps6kj"]
+[ext_resource type="Texture2D" uid="uid://c67l6h6jk08q5" path="res://express_text.png" id="2_h6ddg"]
+
+[node name="Logo" type="Node2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, 0)
+texture = ExtResource("1_ps6kj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(38, 4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_h6ddg")

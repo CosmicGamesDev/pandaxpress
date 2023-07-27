@@ -1,0 +1,192 @@
+[gd_scene load_steps=18 format=3 uid="uid://dghyimgbowcp5"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_35us3"]
+[ext_resource type="Texture2D" uid="uid://wf2n8skxlk1g" path="res://city.png" id="1_hqj41"]
+[ext_resource type="Texture2D" uid="uid://d23q3v5ckrxf1" path="res://street.png" id="2_4c3o1"]
+[ext_resource type="PackedScene" uid="uid://cj4eb5o6ihq8s" path="res://panda.tscn" id="2_6qgh2"]
+[ext_resource type="PackedScene" uid="uid://beqpxssdvrbng" path="res://spawner.tscn" id="2_l0bjw"]
+[ext_resource type="PackedScene" uid="uid://4n2agb5wxpi5" path="res://logo.tscn" id="5_lqjrw"]
+[ext_resource type="PackedScene" uid="uid://bx07qobg1c642" path="res://button.tscn" id="7_wy4vt"]
+[ext_resource type="Script" path="res://ScoreChecker.gd" id="8_0awuj"]
+[ext_resource type="AudioStream" uid="uid://c814aoeuukj5b" path="res://inspirational-asia-116956.mp3" id="9_5w67w"]
+[ext_resource type="AudioStream" uid="uid://viax1xsd6mts" path="res://inspiring-cinematic-asia-116200.mp3" id="10_djbie"]
+[ext_resource type="AudioStream" uid="uid://cbcaujoks6su" path="res://asia-travel-118018.mp3" id="11_kl3ct"]
+
+[sub_resource type="Animation" id="Animation_sxt6n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fejnn"]
+resource_name = "moving"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-48, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q78ae"]
+_data = {
+"RESET": SubResource("Animation_sxt6n"),
+"moving": SubResource("Animation_fejnn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucufe"]
+size = Vector2(253.333, 27.085)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a38aq"]
+size = Vector2(32, 48)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mylsf"]
+streams_count = 3
+stream_0/stream = ExtResource("9_5w67w")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("10_djbie")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("11_kl3ct")
+stream_2/weight = 1.0
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_35us3")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(320, 180)
+scale = Vector2(3.99375, 3)
+texture = ExtResource("1_hqj41")
+
+[node name="Street" type="Node2D" parent="."]
+
+[node name="Road" type="Sprite2D" parent="Street"]
+texture_filter = 1
+position = Vector2(9.94112, 329.941)
+scale = Vector2(3, 3)
+skew = -0.785398
+texture = ExtResource("2_4c3o1")
+
+[node name="Road2" type="Sprite2D" parent="Street"]
+texture_filter = 1
+position = Vector2(105.941, 329.941)
+scale = Vector2(3, 3)
+skew = -0.785398
+texture = ExtResource("2_4c3o1")
+
+[node name="Road3" type="Sprite2D" parent="Street"]
+texture_filter = 1
+position = Vector2(201.941, 329.941)
+scale = Vector2(3, 3)
+skew = -0.785398
+texture = ExtResource("2_4c3o1")
+
+[node name="Road4" type="Sprite2D" parent="Street"]
+texture_filter = 1
+position = Vector2(297.941, 329.941)
+scale = Vector2(3, 3)
+skew = -0.785398
+texture = ExtResource("2_4c3o1")
+
+[node name="Road5" type="Sprite2D" parent="Street"]
+texture_filter = 1
+position = Vector2(393.941, 329.941)
+scale = Vector2(3, 3)
+skew = -0.785398
+texture = ExtResource("2_4c3o1")
+
+[node name="Road6" type="Sprite2D" parent="Street"]
+texture_filter = 1
+position = Vector2(489.941, 329.941)
+scale = Vector2(3, 3)
+skew = -0.785398
+texture = ExtResource("2_4c3o1")
+
+[node name="Road7" type="Sprite2D" parent="Street"]
+texture_filter = 1
+position = Vector2(585.941, 329.941)
+scale = Vector2(3, 3)
+skew = -0.785398
+texture = ExtResource("2_4c3o1")
+
+[node name="Road8" type="Sprite2D" parent="Street"]
+texture_filter = 1
+position = Vector2(681.941, 329.941)
+scale = Vector2(3, 3)
+skew = -0.785398
+texture = ExtResource("2_4c3o1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Street"]
+autoplay = "moving"
+libraries = {
+"": SubResource("AnimationLibrary_q78ae")
+}
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Spawner" parent="Obstacles" instance=ExtResource("2_l0bjw")]
+position = Vector2(704, 280)
+
+[node name="Panda" parent="." instance=ExtResource("2_6qgh2")]
+position = Vector2(88, 160)
+
+[node name="Logo" parent="." instance=ExtResource("5_lqjrw")]
+position = Vector2(91, 44)
+scale = Vector2(3, 3)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-35.1787, 1.52588e-05)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(118.393, 117.333)
+shape = SubResource("RectangleShape2D_ucufe")
+
+[node name="Button" parent="." instance=ExtResource("7_wy4vt")]
+visible = false
+position = Vector2(320, 88)
+
+[node name="ScoreChecker" type="Area2D" parent="."]
+position = Vector2(88, 296)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("8_0awuj")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreChecker"]
+position = Vector2(-8, -8)
+shape = SubResource("RectangleShape2D_a38aq")
+
+[node name="Score" type="Label" parent="."]
+offset_left = 592.0
+offset_top = 16.0
+offset_right = 632.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+
+[node name="TrainSpawn" type="Node2D" parent="."]
+position = Vector2(232, 264)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_mylsf")
+volume_db = -30.0
+autoplay = true
+
+[connection signal="area_entered" from="ScoreChecker" to="ScoreChecker" method="_on_area_entered"]

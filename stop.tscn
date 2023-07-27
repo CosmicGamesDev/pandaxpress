@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://djogh3d0rqt30"]
+
+[ext_resource type="Texture2D" uid="uid://cmn4vaqijbrd8" path="res://stop.png" id="1_so4r2"]
+[ext_resource type="Script" path="res://trash.gd" id="2_gytqs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3t0n4"]
+radius = 5.2
+height = 24.8
+
+[node name="Stop" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_so4r2")
+offset = Vector2(0, -8)
+script = ExtResource("2_gytqs")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_3t0n4")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
