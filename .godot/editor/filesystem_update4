@@ -1,0 +1,15 @@
+res://world.tscn
+res://ScoreChecker.gd
+res://panda.tscn
+res://train.tscn
+res://logo.tscn
+res://trash.tscn
+res://spawner.tscn
+res://stop.tscn
+res://button.tscn
+res://hit_animation.tscn
+res://train.gd
+res://world.gd
+res://spawner.gd
+res://trash.gd
+res://panda.gd
